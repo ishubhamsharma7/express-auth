@@ -1,22 +1,25 @@
-import express from 'express';
+// const { verifyToken } = require('../utils/jwt');
 
-const app = express();
+function authenticate(req, res, next) {
+//   const token = req.headers.authorization?.split(' ')[1];
+//   if (!token) {
+//     return res.status(401).send('Access Denied: No Token Provided!');
+//   }
 
-
-function authenticateToken(req, res, next) {
-    // const token = req.header('Authorization')?.split(' ')[1];
-    // if (!token) return res.sendStatus(401);
-  
-    // jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-    //   if (err) return res.sendStatus(403);
-    //   req.user = user;
-    //   next();
-    // });
+//   try {
+//     const verified = verifyToken(token);
+//     req.user = verified;
+//     next();
+//   } catch (err) {
+//     res.status(400).send('Invalid Token');
+//   }
     req.user = {
+        id: 1,
         name: 'John Doe',
-        id: 1
+        email: 'p5V9f@example.com'
     };
-    next(); 
-  }
-  
-  module.exports = { authenticateToken };
+    next();
+}
+
+
+export default authenticate;
